@@ -58,7 +58,7 @@ bot.on('chat', (username, message) => {
 
 cron.schedule("* * * * * *", () => {
     if (bot.time.timeOfDay > 12541 && bot.time.timeOfDay < 23458 && !bot.isSleeping) {
-        sleep();
+        //sleep();
     }
 })
 
@@ -131,6 +131,7 @@ const job = async (chestToOpen) => {
         console.log('no craft table found')
         return
     }
+    console.log(tableToOpen);
     const recipe = bot.recipesFor(mcData.itemsByName.iron_block.id, null, 1, tableToOpen)[0]
     if (!recipe) {
         bot.chat("error: cant make");
