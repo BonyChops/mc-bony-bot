@@ -1,0 +1,24 @@
+{
+  "name": "mc-bony-bot",
+  "version": "1.0.0",
+  "description": "Automatically craft things",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BonyChops/mc-bony-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BonyChops/mc-bony-bot/issues"
+  },
+  "homepage": "https://github.com/BonyChops/mc-bony-bot#readme",
+  "dependencies": {
+    "mineflayer": "^3.0.0",
+    "node-cron": "^2.0.3",
+    "prismarine-viewer": "^1.13.3"
+  }
+}
