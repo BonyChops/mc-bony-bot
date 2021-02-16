@@ -23,6 +23,7 @@ bot.on('error', err => console.log(err))
 
 bot.once('spawn', () => {
     // mineflayerViewer(bot, { port: 3007, firstPerson: false })
+    bot.chat("Bony_Bot activated :)");
 })
 let mcData
 bot.once('inject_allowed', () => {
@@ -41,6 +42,7 @@ bot.on('chat', (username, message) => {
             sayItems()
             break
         case /^chest$/.test(message):
+            bot.chat("Chest eventListener activated");
             watchChest(false, ['chest', 'ender_chest', 'trapped_chest'])
             break
         case /^sleep$/.test(message): {
@@ -151,24 +153,4 @@ function itemToString(item) {
     } else {
         return '(nothing)'
     }
-}
-
-function itemByType(items, type) {
-    let item
-    let i
-    for (i = 0; i < items.length; ++i) {
-        item = items[i]
-        if (item && item.type === type) return item
-    }
-    return null
-}
-
-function itemByName(items, name) {
-    let item
-    let i
-    for (i = 0; i < items.length; ++i) {
-        item = items[i]
-        if (item && item.name === name) return item
-    }
-    return null
 }
