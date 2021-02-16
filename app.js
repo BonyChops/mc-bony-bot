@@ -23,8 +23,14 @@ bot.on('error', err => console.log(err))
 
 bot.once('spawn', () => {
     // mineflayerViewer(bot, { port: 3007, firstPerson: false })
-    bot.chat("Bony_Bot activated :)");
+    //bot.chat("こんにちは，Bony_Botです :) 製鉄所でバイトしてます．エラー吐いたらBony_Chopsに教えてくれるとうれしいな☆");
 })
+
+bot.on("playerJoined", (player) => {
+    if (player.username === bot.username) return
+    bot.whisper(player.displayName, `${player.displayName}さんこんにちは， Bony_Botです :) 製鉄所でバイトしてます．エラー吐いたらBony_Chopsに教えてくれるとうれしいな☆`)
+})
+
 let mcData
 bot.once('inject_allowed', () => {
     mcData = require('minecraft-data')(bot.version)
@@ -57,9 +63,9 @@ bot.on('chat', (username, message) => {
 })
 
 cron.schedule("* * * * * *", () => {
-    if (bot.time.timeOfDay > 12541 && bot.time.timeOfDay < 23458 && !bot.isSleeping) {
+    /* if (bot.time.timeOfDay > 12541 && bot.time.timeOfDay < 23458 && !bot.isSleeping) {
         //sleep();
-    }
+    } */
 })
 
 
@@ -132,13 +138,15 @@ const job = async (chestToOpen) => {
         return
     }
     console.log(tableToOpen);
-    const recipe = bot.recipesFor(mcData.itemsByName.iron_block.id, null, 1, tableToOpen)[0]
-    if (!recipe) {
+    const recipe = bot.recipesFor(mcData.itemsByName.iron_block.id, null, 1, tableToOpen)
+    console.log(recipe);
+    if (!recipe[0]) {
         bot.chat("error: cant make");
+        console.log("error: cant make");
         return;
     }
     console.log("ok");
-    await bot.craft(recipe, 1, tableToOpen)
+    await bot.craft(recipe[0], 1, tableToOpen)
     const chest2 = await bot.openContainer(chestToOpen)
 
     await chest2.deposit(mcData.itemsByName.iron_block.id, null, 1);
